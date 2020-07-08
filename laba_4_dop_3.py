@@ -42,24 +42,23 @@ def funk (F = FF, d = dd):
             A.append("do svyazy ...")
             A.append("................na praktike takoe ne vozmozno!!!!!!!!!")
         else:
-            return "pora v durku"
-    if l == 2 and w == 0:
-        A.append("izobrazenie : pryamoe, ")
-        f = 1 / (1 / -F  -  1 / d)
-        if d < f:
-            A.append("uvelichenoe, ")
-        if d == f:
-            A.append("pryamoe, ")
-        if d > f:
-            A.append("umenshenoe, ")
-        if f < 0:
-            A.append("mnimoe, ")
-        if f > 0:
-            A.append("deistvitelnoe, ")
-    else:
-        if l == 1 and w == 1:
-            A.append("do svyazy ...")
-            A.append("................na praktike takoe ne vozmozno!!!!!!!!!")
-        else:
-            return "pora v durku"
+            if l == 2 and w == 0:
+                A.append("izobrazenie : pryamoe, ")
+                f = 1 / (1 / -F  -  1 / d)
+                if d < f:
+                    A.append("uvelichenoe, ")
+                if d == f:
+                    A.append("pryamoe, ")
+                if d > f:
+                    A.append("umenshenoe, ")
+                if f < 0:
+                    A.append("mnimoe, ")
+                if f > 0:
+                    A.append("deistvitelnoe, ")
+            else:
+                if l == 1 and w == 1:
+                    A.append("do svyazy ...")
+                    A.append("................na praktike takoe ne vozmozno!!!!!!!!!")
+                else:
+                    return "pora v durku"
 print(funk())
