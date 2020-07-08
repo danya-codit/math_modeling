@@ -56,7 +56,7 @@ def funk (F = FF, d = dd):
                 if f > 0:
                     A.append("deistvitelnoe, ")
             else:
-                if l == 1 and w == 1:
+                if l == 2 and w == 1:
                     A.append("do svyazy ...")
                     A.append("................na praktike takoe ne vozmozno!!!!!!!!!")
                 else:
