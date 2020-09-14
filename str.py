@@ -17,8 +17,6 @@ def timeobserver (to,n):
     
     y = np.ones(n) * to
     
-
-         
     plt.xlabel("coord - v")
     plt.ylabel("coord - t")
     plt.grid()
@@ -59,11 +57,11 @@ def timerocet (to,n,c,v,tz):
             print("time u rocket = ", tr )
         
 timeobserver( 5,# time kotoroe proshlo u observera
-        100 #количество точек
+        100 #col-vo tochek
          )
     
 timerocet( 5,# time kotoroe proshlo u observera
-        100, #количество точек
+        100, #col-vo tochek
          3*10**8, # ckorost light
          2*10**8, # speed rocet
          10 # time zemlyanina
