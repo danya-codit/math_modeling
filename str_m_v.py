@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import math
 
 G = 6.672 * 10**-11
 
@@ -41,10 +42,10 @@ def timerocetg (to,n,c,r,Msun):
         
     plt.plot(x,y,color= "magenta")
     plt.show()
-    
+    tr1 = to *(1 - (2*G*Msun) / (r * c**2))**0.5
     print("_________________ptimer_s dannoi_massoi_i_rastoyaniem____________")
     print("time u zemlznina = ", to, "rasstoyanie do central graviti body = ", r )
-    print("time u rocket =  ", to *(1 - (2*G*Msun) / (r * c**2))**0.5 )
+    print("time u rocket =  ", tr1 )
         
    
 timeobserver( 100,# time kotoroe proshlo u observera
@@ -52,10 +53,10 @@ timeobserver( 100,# time kotoroe proshlo u observera
         2*10**30 # mass sun
          )
     
-timerocetg( 100,# time kotoroe proshlo u observera
+timerocetg( 10,# time kotoroe proshlo u observera
         100, #col-vo tochek
          3*10**8, # ckorost light
-         400*10**6, # rasstoyanie do central graviti body
+         40*10**6, # rasstoyanie do central graviti body
          2*10**30 # mass sun
          )
 
@@ -104,14 +105,14 @@ def timerocetv (to,n,c,v,tz):
         print("time u zemlznina = ", tz, "speed roceti = ", v )
         print("time u rocket = infinity " )
     else:
-        tr = tz / (1-(v**2)/(c**2))**0.5
         print("_________________ptimer_s dannoi_speed_____________")
         if v > 3*10**8:
             print("pora v durku")
             print("tak kak max speed v ouer galaktika = speed light = 3*10**8 m/c")
         else:
+            tr2 = tz / (1-(v**2)/(c**2))**0.5
             print("time u zemlznina = ", tz, "speed roceti = ", v )
-            print("time u rocket = ", tr )
+            print("time u rocket = ", tr2 )
         
 timeobserver( 5,# time kotoroe proshlo u observera
         100 #col-vo tochek
@@ -120,8 +121,144 @@ timeobserver( 5,# time kotoroe proshlo u observera
 timerocetv( 5,# time kotoroe proshlo u observera
         100, #col-vo tochek
          3*10**8, # ckorost light
-         3*10**8, # speed rocet
+         2.5*10**8, # speed rocet
          10 # time zemlyanina
          )
+
+def watch(R,
+          time #zemlyanina
+          ):
+    
+    
+    
+    fig = plt.figure()
+    fig.suptitle('timer zemlyanina', fontsize=14, fontweight='bold')
+    
+    ax = fig.add_subplot(111)
+    fig.subplots_adjust(top=0.85)
+    
+    """
+        CLOAK FACE
+       
+    """
+    angle = 60
+    for k in range (1, 13):
+        plt.axis('equal')
+        ax.text( R * 1.3 * math.cos(angle * math.pi / 180) - 0.12, R * 1.3 * math.sin(angle* math.pi / 180) - 0.05, k , fontsize=15, style='italic')
+        angle = angle - 30  
+        
+    """
+      CIRCUMFERENCE OF THE CLOCK
+      
+    """
+    x = np.arange(-2,2,0.1)
+    y = np.arange(-2,2,0.1)
+    X, Y = np.meshgrid(x,y)
+    fxy = X**2 + Y**2
+    plt.contour(X,Y,fxy, levels=[R])
+    plt.axis('equal')
+    
+    alfa = 0
+    
+    
+    """
+        riski seconds
+        
+    """
+    alfa = 0
+    for n in range (60):
+        
+        x = [ (R-0.1) * math.cos(alfa * math.pi / 180) , R * math.cos(alfa * math.pi / 180)]
+        y = [ (R-0.1) * math.sin(alfa * math.pi / 180) , R * math.sin(alfa * math.pi / 180)]
+        
+        alfa = alfa + 6
+    
+        plt.plot(x, y, color= "navy")
+        
+        
+     
+    """
+        riski hours
+        
+    """
+    
+    alfa = 0
+    for n in range (60):
+        
+        x = [ (R-0.2) * math.cos(alfa * math.pi / 180) , R * math.cos(alfa * math.pi / 180)]
+        y = [ (R-0.2) * math.sin(alfa * math.pi / 180) , R * math.sin(alfa * math.pi / 180)]
+        
+        alfa = alfa + 30
+    
+        plt.plot(x, y, color= "navy")
+        
+        
+    """
+       comversion of secods into hours, minuts, seconds
+        
+    """
+    
+    days  =  time // (24*3600)
+    hours = time / 3600
+    mints = time / 60
+    seconds = time 
+    print("days = ", days,
+          ", hours = ", hours,
+          ", mints = ", mints,
+          ", seconds = ", seconds
+          )
+    
+    
+    """
+        seconds hand
+        
+    """
+    
+    alfa = 90 - seconds * 6
+    
+    x = [ 0 , (R - 0.1) * math.cos(alfa * math.pi / 180)]
+    y = [ 0 , (R - 0.1) * math.sin(alfa * math.pi / 180)]
+        
+    
+    plt.plot(x, y, color= "deeppink", marker = '.', ms = 3,label='seconds')
+    
+    
+    """
+        minuts hand
+        
+    """
+    
+    alfa = 90 - mints * 6
+    
+    x = [ 0 , (R - 0.2) * math.cos(alfa * math.pi / 180)]
+    y = [ 0 , (R - 0.2) * math.sin(alfa * math.pi / 180)]
+        
+    
+    plt.plot(x, y, color= "darkblue", marker = '.', ms = 10, label='mints')
+    
+    
+    """
+        hours hand
+        
+    """
+    
+    alfa = 90 - hours * 30
+    
+    x = [ 0 , (R - 0.3) * math.cos(alfa * math.pi / 180)]
+    y = [ 0 , (R - 0.3) * math.sin(alfa * math.pi / 180)]
+        
+    
+    plt.plot(x, y, color= "r", marker = '.', ms = 15, label='hours')
+    
+    """ 
+        days
+        
+    """
+    ax.text( 0.5, -0.25, days, fontsize=15, style='italic')
+    ax.text( -0.5,-0.25, "days:", fontsize=15, style='italic')
+
+        
+watch(1,360000)
+
 
 plt.show()
