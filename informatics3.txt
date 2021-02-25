@@ -1,0 +1,9 @@
+a = int(input())
+if a > 999 or a < 100:
+  print('pora v durcu')
+elif:
+  x = a // 100
+  y = (a // 10) % 10
+  z = a % 10
+print(x, y, z)
+
