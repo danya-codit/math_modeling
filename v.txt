@@ -1,0 +1,11 @@
+a = 1
+max = 0
+min = 0
+while a != 0:
+  a = int(input())
+  if a > max:
+    max = a
+  if a < min :
+    min = a
+print(max)
+print(min)
