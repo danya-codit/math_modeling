@@ -1,0 +1,10 @@
+a = 1
+summ = 0
+comm = 1
+while a != 0:
+  a = int(input())
+  summ += a
+  if a != 0:
+    comm *= a
+print(summ)
+print(comm)
